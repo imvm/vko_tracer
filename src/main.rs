@@ -16,7 +16,7 @@ let matches = App::new("vko_tracer")
 
     vko_tracer::raytracer::init();
 
-    vko_tracer::raytracer::process_file(matches.value_of("INPUT"));
+    vko_tracer::raytracer::process_config(matches.value_of("INPUT"));
 
     vko_tracer::raytracer::raytrace();
 

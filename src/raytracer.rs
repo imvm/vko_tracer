@@ -36,21 +36,25 @@ use vulkano::sync::GpuFuture;
 
 const DEFAULT_FILENAME: &str = "scene.obj";
 
+/// Initialize raytracing context
 pub fn init() {
     println!("Initializing!");
 }
 
-pub fn process_file(option: Option<&str>) {
+/// Process user specified configurations
+pub fn process_config(option: Option<&str>) {
     match option {
         Some(filename) => parse_file(filename),
         None => parse_file(DEFAULT_FILENAME),
     }
 }
 
+/// Parse scene file
 fn parse_file(filename: &str) {
     println!("{}", filename);
 }
 
+/// Raytracing function
 pub fn raytrace() {
     let instance = Instance::new(None, &InstanceExtensions::none(), None)
         .expect("failed to create instance");
@@ -177,6 +181,7 @@ pub fn raytrace() {
     image.save("triangle.png").unwrap();
 }
 
+/// Cleanup scene context
 pub fn cleanup() {
     println!("Cleaning up!");
 }
