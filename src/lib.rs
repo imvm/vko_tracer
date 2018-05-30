@@ -1,6 +1,3 @@
-//! GPU raytracing library
-//! Uses the Vulkano wrapper to simplify access to the Vulkan API
-
 #[macro_use]
 extern crate vulkano;
 
