@@ -70,8 +70,8 @@ fn raytrace() {
 
     println!("Device initialized");
 
-    let image_width = 200;
-    let image_height = 100;
+    let image_width = 800;
+    let image_height = 400;
 
     let image = StorageImage::new(device.clone(), 
         Dimensions::Dim2d {width: image_width, height: image_height},
@@ -155,10 +155,11 @@ vec3 Camera (in float x, in float y)
 float SphereIntersection (in Ray ray, in Sphere sphere)
 {
 	vec3 delta = ray.origin - sphere.position;
+    float a = dot(ray.direction, ray.direction);
 	float b = dot((delta * 2), ray.direction);
 	float c = dot(delta, delta) - (sphere.radius * sphere.radius);
 
-	float disc = b * b - 4 * c;
+	float disc = b * b - 4 * a * c;
 	if (disc < 0)
 		return 0;
 	else
@@ -168,12 +169,14 @@ float SphereIntersection (in Ray ray, in Sphere sphere)
 	float result1 = -b + disc;
 	float result2 = -b - disc;
 
-	return (result2 > Epsilon) ? result2 / 2 : ((result1 > Epsilon) ? result1 / 2 : 0);
+	return (result2 > Epsilon) ? result2 / 2*a : ((result1 > Epsilon) ? result1 / 2*a : 0);
 }
 
-bool TryGetIntersection (in Ray ray, out int id, inout float dist)
+float TryGetIntersection (in Ray ray, out int id, inout float dist)
 {
 	id = -1;
+
+    float t = 0;
 	
 	for (int i = 0; i < 4; i++)
 	{
@@ -182,10 +185,10 @@ bool TryGetIntersection (in Ray ray, out int id, inout float dist)
 		if (dist > Epsilon && dist < Inf)
 		{
 			id = i;
+            t = dist;
 		}
 	}
-
-	return (id > -1) ? true : false;
+	return t;
 }
 
 //////////////////////////////
@@ -196,15 +199,24 @@ vec3 Trace (inout Ray ray)
 
     int id;
     float dist;
-    bool intersection = TryGetIntersection(ray, id, dist);
-    if (intersection) {
-        Sphere s = spheres[id];
-        finalColor = s.color;
+    float intersection = TryGetIntersection(ray, id, dist);
+    if (intersection > 0.0) {
+        vec3 N = normalize(ray.origin + ray.direction * intersection - vec3(0.0, 0.0, -1.0));
+        //Sphere s = spheres[id];
+        //finalColor = s.color;
+        finalColor = 0.5*vec3(N.x+1, N.y+1, N.z+1);
+    } else {
+        vec3 unit_direction = normalize(ray.direction);
+        float t = 0.5*(unit_direction.y + 1.0);
+        finalColor = (1.0-t)*vec3(1.0, 1.0, 1.0) + t*vec3(0.5, 0.7, 1.0);
     }
 
 	return finalColor;
 }
 
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
 
 void main()
 {
@@ -213,10 +225,17 @@ void main()
 
 	Ray ray;
 	ray.origin = vec3(0, 0, -0.1);
-	vec3 cam = Camera(idx, idy);
-	ray.direction = normalize( (cam - ray.origin));
 
-	vec3 finalColor = Trace(ray);	
+
+	vec3 color = vec3(0.0, 0.0, 0.0);
+    int ns = 10;
+    for(float i = 0; i < ns; i++) {
+	    vec3 cam = Camera(idx + rand(vec2(i, i)), idy + rand(vec2(i, i)));
+	    ray.direction = normalize( (cam - ray.origin));
+
+        color += Trace(ray);	
+    }
+    vec3 finalColor = color/float(ns);
 
 	imageStore(computeImage, ivec2(gl_GlobalInvocationID.xy), vec4(finalColor, 1.0));
 }
