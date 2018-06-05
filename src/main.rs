@@ -13,12 +13,16 @@ let matches = App::new("vko_tracer")
                            .required(false)
                            .index(1))
                       .get_matches();
+                      
+    let string = process_config(matches.value_of("INPUT"));
 
-    vko_tracer::raytracer::init();
+    vko_tracer::raytracer::render();
+}
 
-    vko_tracer::raytracer::process_config(matches.value_of("INPUT"));
-
-    vko_tracer::raytracer::raytrace();
-
-    vko_tracer::raytracer::cleanup();
+/// Process user specified configurations
+fn process_config(option: Option<&str>) -> &str {
+    match option {
+        Some(filename) => filename,
+        None => "scene.obj",
+    }
 }

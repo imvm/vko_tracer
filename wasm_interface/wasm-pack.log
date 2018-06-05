@@ -1,0 +1,606 @@
+Jun 01 17:55:59.622 ERRO Compilation of your program failed. stderr:
+
+    Updating registry `https://github.com/rust-lang/crates.io-index`
+ Downloading wasm-bindgen v0.2.11
+ Downloading wasm-bindgen-macro v0.2.11
+ Downloading wasm-bindgen-backend v0.2.11
+ Downloading wasm-bindgen-shared v0.2.11
+   Compiling unicode-xid v0.0.4
+   Compiling quote v0.3.15
+   Compiling nodrop v0.1.12
+   Compiling cfg-if v0.1.3
+   Compiling cc v1.0.17
+   Compiling unicode-xid v0.1.0
+   Compiling lazy_static v1.0.1
+   Compiling num-traits v0.2.4
+   Compiling scopeguard v0.3.3
+   Compiling memoffset v0.2.1
+   Compiling serde v1.0.64
+   Compiling num-integer v0.1.38
+   Compiling libc v0.2.41
+   Compiling wasm-bindgen-shared v0.2.11
+   Compiling rayon-core v1.4.0
+   Compiling num-iter v0.1.37
+   Compiling dtoa v0.4.2
+   Compiling remove_dir_all v0.5.1
+   Compiling itoa v0.4.1
+   Compiling rand v0.4.2
+   Compiling either v1.5.0
+   Compiling unicode-width v0.1.5
+   Compiling adler32 v1.0.2
+   Compiling vulkano v0.9.0
+   Compiling byteorder v1.2.3
+   Compiling color_quant v1.0.0
+   Compiling ansi_term v0.11.0
+   Compiling lzw v0.10.0
+   Compiling strsim v0.7.0
+   Compiling half v1.1.0
+   Compiling fnv v1.0.6
+   Compiling atty v0.2.10
+   Compiling vk-sys v0.3.3
+   Compiling bitflags v1.0.3
+   Compiling smallvec v0.6.1
+   Compiling vec_map v0.8.1
+   Compiling crossbeam v0.3.2
+   Compiling scoped_threadpool v0.1.9
+   Compiling crossbeam-utils v0.2.2
+   Compiling log v0.4.1
+   Compiling arrayvec v0.4.7
+   Compiling synom v0.11.3
+   Compiling proc-macro2 v0.4.4
+error[E0433]: failed to resolve. Could not find `Group` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:122:45
+    |
+122 |                 let mut group = proc_macro::Group::new(delim, tt.stream.inner.unwrap_nightly());
+    |                                             ^^^^^ Could not find `Group` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Punct` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:131:42
+    |
+131 |                 let mut op = proc_macro::Punct::new(tt.as_char(), spacing);
+    |                                          ^^^^^ Could not find `Punct` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `token_stream` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:213:25
+    |
+213 |     Nightly(proc_macro::token_stream::IntoIter),
+    |                         ^^^^^^^^^^^^ Could not find `token_stream` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Ident` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:468:60
+    |
+468 |             Span::Nightly(s) => Ident::Nightly(proc_macro::Ident::new(string, s)),
+    |                                                            ^^^^^ Could not find `Ident` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Ident` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:475:60
+    |
+475 |             Span::Nightly(s) => Ident::Nightly(proc_macro::Ident::new_raw(string, s)),
+    |                                                            ^^^^^ Could not find `Ident` in `proc_macro`
+
+error[E0412]: cannot find type `Ident` in module `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:461:25
+    |
+461 |     Nightly(proc_macro::Ident),
+    |                         ^^^^^ not found in `proc_macro`
+help: possible candidates are found in other modules, you can import them into scope
+    |
+3   | use Ident;
+    |
+3   | use imp::Ident;
+    |
+3   | use stable::Ident;
+    |
+
+error[E0412]: cannot find type `Ident` in module `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:495:44
+    |
+495 |     fn unwrap_nightly(self) -> proc_macro::Ident {
+    |                                            ^^^^^ not found in `proc_macro`
+help: possible candidates are found in other modules, you can import them into scope
+    |
+3   | use Ident;
+    |
+3   | use imp::Ident;
+    |
+3   | use stable::Ident;
+    |
+
+error[E0554]: #![feature] may not be used on the stable release channel
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/lib.rs:47:34
+   |
+47 | #![cfg_attr(feature = "nightly", feature(proc_macro))]
+   |                                  ^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors occurred: E0412, E0433, E0554.
+For more information about an error, try `rustc --explain E0412`.
+error: Could not compile `proc-macro2`.
+warning: build failed, waiting for other jobs to finish...
+error: build failed
+
+Jun 01 18:46:27.806 ERRO Compilation of your program failed. stderr:
+
+   Compiling cmake v0.1.31
+   Compiling proc-macro2 v0.4.4
+   Compiling serde v1.0.64
+   Compiling rand v0.4.2
+   Compiling rayon-core v1.4.0
+   Compiling num_cpus v1.8.0
+error[E0433]: failed to resolve. Could not find `Group` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:122:45
+    |
+122 |                 let mut group = proc_macro::Group::new(delim, tt.stream.inner.unwrap_nightly());
+    |                                             ^^^^^ Could not find `Group` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Punct` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:131:42
+    |
+131 |                 let mut op = proc_macro::Punct::new(tt.as_char(), spacing);
+    |                                          ^^^^^ Could not find `Punct` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `token_stream` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:213:25
+    |
+213 |     Nightly(proc_macro::token_stream::IntoIter),
+    |                         ^^^^^^^^^^^^ Could not find `token_stream` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Ident` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:468:60
+    |
+468 |             Span::Nightly(s) => Ident::Nightly(proc_macro::Ident::new(string, s)),
+    |                                                            ^^^^^ Could not find `Ident` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Ident` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:475:60
+    |
+475 |             Span::Nightly(s) => Ident::Nightly(proc_macro::Ident::new_raw(string, s)),
+    |                                                            ^^^^^ Could not find `Ident` in `proc_macro`
+
+error[E0412]: cannot find type `Ident` in module `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:461:25
+    |
+461 |     Nightly(proc_macro::Ident),
+    |                         ^^^^^ not found in `proc_macro`
+help: possible candidates are found in other modules, you can import them into scope
+    |
+3   | use Ident;
+    |
+3   | use imp::Ident;
+    |
+3   | use stable::Ident;
+    |
+
+error[E0412]: cannot find type `Ident` in module `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:495:44
+    |
+495 |     fn unwrap_nightly(self) -> proc_macro::Ident {
+    |                                            ^^^^^ not found in `proc_macro`
+help: possible candidates are found in other modules, you can import them into scope
+    |
+3   | use Ident;
+    |
+3   | use imp::Ident;
+    |
+3   | use stable::Ident;
+    |
+
+error[E0554]: #![feature] may not be used on the stable release channel
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/lib.rs:47:34
+   |
+47 | #![cfg_attr(feature = "nightly", feature(proc_macro))]
+   |                                  ^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors occurred: E0412, E0433, E0554.
+For more information about an error, try `rustc --explain E0412`.
+error: Could not compile `proc-macro2`.
+warning: build failed, waiting for other jobs to finish...
+error: build failed
+
+Jun 01 19:03:36.033 ERRO Compilation of your program failed. stderr:
+
+   Compiling proc-macro2 v0.4.4
+   Compiling wasm-bindgen-shared v0.2.11
+   Compiling shared_library v0.1.8
+   Compiling winit v0.11.3
+   Compiling winit v0.15.0
+error: The platform you're compiling for is not supported by winit
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/winit-0.11.3/src/platform/mod.rs:25:1
+   |
+25 | compile_error!("The platform you're compiling for is not supported by winit");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:31:15
+   |
+31 |         match dl::check_for_errors_in(|| {
+   |               ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:33:17
+   |
+33 |                 dl::close(self.handle)
+   |                 ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:54:29
+   |
+54 |         let maybe_library = dl::open(filename.map(|path| path.as_os_str()));
+   |                             ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:114:34
+    |
+114 |         let maybe_symbol_value = dl::check_for_errors_in(|| {
+    |                                  ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:115:13
+    |
+115 |             dl::symbol(self.handle, raw_string.as_ptr() as *const _)
+    |             ^^ Use of undeclared type or module `dl`
+
+error: aborting due to previous error
+
+error: Could not compile `winit`.
+warning: build failed, waiting for other jobs to finish...
+error: The platform you're compiling for is not supported by winit
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/winit-0.15.0/src/platform/mod.rs:25:1
+   |
+25 | compile_error!("The platform you're compiling for is not supported by winit");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to previous error
+
+error: Could not compile `winit`.
+warning: build failed, waiting for other jobs to finish...
+error[E0433]: failed to resolve. Could not find `Group` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:122:45
+    |
+122 |                 let mut group = proc_macro::Group::new(delim, tt.stream.inner.unwrap_nightly());
+    |                                             ^^^^^ Could not find `Group` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Punct` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:131:42
+    |
+131 |                 let mut op = proc_macro::Punct::new(tt.as_char(), spacing);
+    |                                          ^^^^^ Could not find `Punct` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `token_stream` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:213:25
+    |
+213 |     Nightly(proc_macro::token_stream::IntoIter),
+    |                         ^^^^^^^^^^^^ Could not find `token_stream` in `proc_macro`
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0433`.
+error: Could not compile `shared_library`.
+warning: build failed, waiting for other jobs to finish...
+error[E0433]: failed to resolve. Could not find `Ident` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:468:60
+    |
+468 |             Span::Nightly(s) => Ident::Nightly(proc_macro::Ident::new(string, s)),
+    |                                                            ^^^^^ Could not find `Ident` in `proc_macro`
+
+error[E0433]: failed to resolve. Could not find `Ident` in `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:475:60
+    |
+475 |             Span::Nightly(s) => Ident::Nightly(proc_macro::Ident::new_raw(string, s)),
+    |                                                            ^^^^^ Could not find `Ident` in `proc_macro`
+
+error[E0412]: cannot find type `Ident` in module `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:461:25
+    |
+461 |     Nightly(proc_macro::Ident),
+    |                         ^^^^^ not found in `proc_macro`
+help: possible candidates are found in other modules, you can import them into scope
+    |
+3   | use Ident;
+    |
+3   | use imp::Ident;
+    |
+3   | use stable::Ident;
+    |
+
+error[E0412]: cannot find type `Ident` in module `proc_macro`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/unstable.rs:495:44
+    |
+495 |     fn unwrap_nightly(self) -> proc_macro::Ident {
+    |                                            ^^^^^ not found in `proc_macro`
+help: possible candidates are found in other modules, you can import them into scope
+    |
+3   | use Ident;
+    |
+3   | use imp::Ident;
+    |
+3   | use stable::Ident;
+    |
+
+error[E0554]: #![feature] may not be used on the stable release channel
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro2-0.4.4/src/lib.rs:47:34
+   |
+47 | #![cfg_attr(feature = "nightly", feature(proc_macro))]
+   |                                  ^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 8 previous errors
+
+Some errors occurred: E0412, E0433, E0554.
+For more information about an error, try `rustc --explain E0412`.
+error: Could not compile `proc-macro2`.
+
+To learn more, run the command again with --verbose.
+
+Jun 01 19:04:54.692 ERRO Compilation of your program failed. stderr:
+
+   Compiling unicode-xid v0.0.4
+   Compiling quote v0.3.15
+   Compiling cfg-if v0.1.3
+   Compiling nodrop v0.1.12
+   Compiling lazy_static v1.0.1
+   Compiling memoffset v0.2.1
+   Compiling unicode-xid v0.1.0
+   Compiling cc v1.0.17
+   Compiling scopeguard v0.3.3
+   Compiling serde v1.0.64
+   Compiling num-traits v0.2.4
+   Compiling rayon-core v1.4.0
+   Compiling wasm-bindgen-shared v0.2.11
+   Compiling num-integer v0.1.38
+   Compiling libc v0.2.41
+   Compiling rand v0.4.2
+   Compiling dtoa v0.4.2
+   Compiling itoa v0.4.1
+   Compiling remove_dir_all v0.5.1
+   Compiling num-iter v0.1.37
+   Compiling byteorder v1.2.3
+   Compiling unicode-width v0.1.5
+   Compiling either v1.5.0
+   Compiling vulkano v0.9.0
+   Compiling adler32 v1.0.2
+   Compiling crossbeam v0.3.2
+   Compiling vec_map v0.8.1
+   Compiling color_quant v1.0.0
+   Compiling fnv v1.0.6
+   Compiling ansi_term v0.11.0
+   Compiling vk-sys v0.3.3
+   Compiling smallvec v0.6.1
+   Compiling bitflags v1.0.3
+   Compiling strsim v0.7.0
+   Compiling lzw v0.10.0
+   Compiling half v1.1.0
+   Compiling atty v0.2.10
+   Compiling scoped_threadpool v0.1.9
+   Compiling crossbeam-utils v0.2.2
+   Compiling log v0.4.1
+   Compiling arrayvec v0.4.7
+   Compiling synom v0.11.3
+   Compiling proc-macro2 v0.4.4
+   Compiling num_cpus v1.8.0
+   Compiling shared_library v0.1.8
+   Compiling winit v0.11.3
+   Compiling winit v0.15.0
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:31:15
+   |
+31 |         match dl::check_for_errors_in(|| {
+   |               ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:33:17
+   |
+33 |                 dl::close(self.handle)
+   |                 ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:54:29
+   |
+54 |         let maybe_library = dl::open(filename.map(|path| path.as_os_str()));
+   |                             ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:114:34
+    |
+114 |         let maybe_symbol_value = dl::check_for_errors_in(|| {
+    |                                  ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:115:13
+    |
+115 |             dl::symbol(self.handle, raw_string.as_ptr() as *const _)
+    |             ^^ Use of undeclared type or module `dl`
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0433`.
+error: Could not compile `shared_library`.
+warning: build failed, waiting for other jobs to finish...
+error: The platform you're compiling for is not supported by winit
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/winit-0.11.3/src/platform/mod.rs:25:1
+   |
+25 | compile_error!("The platform you're compiling for is not supported by winit");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to previous error
+
+error: Could not compile `winit`.
+warning: build failed, waiting for other jobs to finish...
+error: The platform you're compiling for is not supported by winit
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/winit-0.15.0/src/platform/mod.rs:25:1
+   |
+25 | compile_error!("The platform you're compiling for is not supported by winit");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to previous error
+
+error: Could not compile `winit`.
+warning: build failed, waiting for other jobs to finish...
+error: build failed
+
+Jun 01 19:06:37.655 ERRO Compilation of your program failed. stderr:
+
+   Compiling unicode-xid v0.0.4
+   Compiling quote v0.3.15
+   Compiling cfg-if v0.1.3
+   Compiling nodrop v0.1.12
+   Compiling unicode-xid v0.1.0
+   Compiling serde v1.0.64
+   Compiling scopeguard v0.3.3
+   Compiling memoffset v0.2.1
+   Compiling num-traits v0.2.4
+   Compiling lazy_static v1.0.1
+   Compiling cc v1.0.17
+   Compiling wasm-bindgen-shared v0.2.11
+   Compiling libc v0.2.41
+   Compiling num-integer v0.1.38
+   Compiling rayon-core v1.4.0
+   Compiling num-iter v0.1.37
+   Compiling dtoa v0.4.2
+   Compiling remove_dir_all v0.5.1
+   Compiling itoa v0.4.1
+   Compiling rand v0.4.2
+   Compiling byteorder v1.2.3
+   Compiling vulkano v0.9.0
+   Compiling adler32 v1.0.2
+   Compiling unicode-width v0.1.5
+   Compiling either v1.5.0
+   Compiling half v1.1.0
+   Compiling bitflags v1.0.3
+   Compiling color_quant v1.0.0
+   Compiling lzw v0.10.0
+   Compiling smallvec v0.6.1
+   Compiling crossbeam v0.3.2
+   Compiling atty v0.2.10
+   Compiling ansi_term v0.11.0
+   Compiling fnv v1.0.6
+   Compiling strsim v0.7.0
+   Compiling vk-sys v0.3.3
+   Compiling vec_map v0.8.1
+   Compiling scoped_threadpool v0.1.9
+   Compiling crossbeam-utils v0.2.2
+   Compiling log v0.4.1
+   Compiling arrayvec v0.4.7
+   Compiling synom v0.11.3
+   Compiling proc-macro2 v0.4.4
+   Compiling num_cpus v1.8.0
+   Compiling shared_library v0.1.8
+   Compiling winit v0.11.3
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:31:15
+   |
+31 |         match dl::check_for_errors_in(|| {
+   |               ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:33:17
+   |
+33 |                 dl::close(self.handle)
+   |                 ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:54:29
+   |
+54 |         let maybe_library = dl::open(filename.map(|path| path.as_os_str()));
+   |                             ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:114:34
+    |
+114 |         let maybe_symbol_value = dl::check_for_errors_in(|| {
+    |                                  ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:115:13
+    |
+115 |             dl::symbol(self.handle, raw_string.as_ptr() as *const _)
+    |             ^^ Use of undeclared type or module `dl`
+
+error: The platform you're compiling for is not supported by winit
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/winit-0.11.3/src/platform/mod.rs:25:1
+   |
+25 | compile_error!("The platform you're compiling for is not supported by winit");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0433`.
+error: Could not compile `shared_library`.
+warning: build failed, waiting for other jobs to finish...
+error: aborting due to previous error
+
+error: Could not compile `winit`.
+warning: build failed, waiting for other jobs to finish...
+error: build failed
+
+Jun 01 19:29:00.612 INFO Running init command...
+Jun 01 19:29:00.614 INFO Path: Some("."), Scope: None, Disable Dts: false, Target: browser
+Jun 01 19:29:00.614 INFO Adding wasm-target...
+Jun 01 19:29:00.723 INFO Adding wasm-target was successful.
+Jun 01 19:29:00.724 INFO Building wasm...
+Jun 01 19:29:03.564 ERRO Compilation of your program failed. stderr:
+
+   Compiling cmake v0.1.31
+   Compiling rayon-core v1.4.0
+   Compiling shared_library v0.1.8
+   Compiling winit v0.11.3
+   Compiling winit v0.15.0
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:31:15
+   |
+31 |         match dl::check_for_errors_in(|| {
+   |               ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:33:17
+   |
+33 |                 dl::close(self.handle)
+   |                 ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:54:29
+   |
+54 |         let maybe_library = dl::open(filename.map(|path| path.as_os_str()));
+   |                             ^^ Use of undeclared type or module `dl`
+
+error: The platform you're compiling for is not supported by winit
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/winit-0.11.3/src/platform/mod.rs:25:1
+   |
+25 | compile_error!("The platform you're compiling for is not supported by winit");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:114:34
+    |
+114 |         let maybe_symbol_value = dl::check_for_errors_in(|| {
+    |                                  ^^ Use of undeclared type or module `dl`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `dl`
+   --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/shared_library-0.1.8/src/dynamic_library.rs:115:13
+    |
+115 |             dl::symbol(self.handle, raw_string.as_ptr() as *const _)
+    |             ^^ Use of undeclared type or module `dl`
+
+error: The platform you're compiling for is not supported by winit
+  --> /Users/ianmanor/.cargo/registry/src/github.com-1ecc6299db9ec823/winit-0.15.0/src/platform/mod.rs:25:1
+   |
+25 | compile_error!("The platform you're compiling for is not supported by winit");
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to previous error
+
+error: aborting due to previous error
+
+error: Could not compile `winit`.
+warning: build failed, waiting for other jobs to finish...
+error: Could not compile `winit`.
+warning: build failed, waiting for other jobs to finish...
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0433`.
+error: Could not compile `shared_library`.
+warning: build failed, waiting for other jobs to finish...
+error: build failed
+

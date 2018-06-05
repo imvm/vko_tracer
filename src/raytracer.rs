@@ -21,26 +21,28 @@ use std::sync::Arc;
 
 const DEFAULT_FILENAME: &str = "scene.obj";
 
-/// Initialize raytracing context
-pub fn init() {
-    println!("Initializing!");
-}
-
-/// Process user specified configurations
-pub fn process_config(option: Option<&str>) {
-    match option {
-        Some(filename) => parse_file(filename),
-        None => parse_file(DEFAULT_FILENAME),
-    }
-}
-
 /// Parse scene file
-fn parse_file(filename: &str) {
+fn parse_file(filename: String) {
     println!("{}", filename);
 }
 
 /// Raytracing function
-pub fn raytrace() {
+#[no_mangle]
+pub extern "C" fn render() {
+    init();
+    cleanup();
+    let rendered_image = raytrace();
+}
+
+pub fn init() {
+    println!("Initializing")
+}
+
+pub fn cleanup() {
+    println!("Cleaning up!")
+}
+
+fn raytrace() {
     // As with other examples, the first step is to create an instance.
     let instance = Instance::new(None, &InstanceExtensions::none(), None)
         .expect("failed to create Vulkan instance");
@@ -68,8 +70,8 @@ pub fn raytrace() {
 
     println!("Device initialized");
 
-    let image_width = 1024;
-    let image_height = 1024;
+    let image_width = 200;
+    let image_height = 100;
 
     let image = StorageImage::new(device.clone(), 
         Dimensions::Dim2d {width: image_width, height: image_height},
@@ -169,14 +171,14 @@ float SphereIntersection (in Ray ray, in Sphere sphere)
 	return (result2 > Epsilon) ? result2 / 2 : ((result1 > Epsilon) ? result1 / 2 : 0);
 }
 
-bool TryGetIntersection (in Ray ray, out int id)
+bool TryGetIntersection (in Ray ray, out int id, inout float dist)
 {
 	id = -1;
 	
 	for (int i = 0; i < 4; i++)
 	{
 		Sphere s = spheres[i];
-		float dist = SphereIntersection(ray, s);
+		dist = SphereIntersection(ray, s);
 		if (dist > Epsilon && dist < Inf)
 		{
 			id = i;
@@ -193,7 +195,8 @@ vec3 Trace (inout Ray ray)
 	vec3 finalColor = vec3(1.0, 1.0, 1.0);
 
     int id;
-    bool intersection = TryGetIntersection(ray, id);
+    float dist;
+    bool intersection = TryGetIntersection(ray, id, dist);
     if (intersection) {
         Sphere s = spheres[id];
         finalColor = s.color;
@@ -316,11 +319,6 @@ void main()
     // The call to `read()` would return an error if the buffer was still in use by the GPU.
     
     let buffer_content = image_buffer.read().unwrap();
-    let rendered_image = ImageBuffer::<Rgba<u8>, _>::from_raw(image_width, image_height, &buffer_content[..]).unwrap();
+    let rendered_image =  Box::new(ImageBuffer::<Rgba<u8>, &[u8]>::from_raw(image_width, image_height, &buffer_content[..]).unwrap());
     rendered_image.save("render.png").unwrap();
-}
-
-/// Cleanup scene context
-pub fn cleanup() {
-    println!("Cleaning up!");
 }
